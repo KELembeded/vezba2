@@ -1,8 +1,10 @@
 sources=$(wildcard *.c)
 objs=$(sources:.c=.o)
+# Ovde postaviti ime izvrsnog fajla: result=ime_izvrsnog_fajla
+result=izvrsni
 
-all: result
-result: $(objs)
+all: $(result)
+$(result): $(objs)
 	@echo -n "Building output binary: "
 	@echo $@
 	$(CC) -o $@ $(objs)
@@ -18,5 +20,5 @@ result: $(objs)
 -include $(sources:.c=.d)
 .PHONY: clean
 clean:
-	@rm -rf result *.o *.d
+	@rm -rf $(result) *.o *.d
 	@echo "Clean done.."
